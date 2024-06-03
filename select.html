@@ -1,96 +1,120 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Как можно работать с таблицами в MySQL на Node.js</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Работа с MySQL на Node.js</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem 0;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        form {
+            margin: 2rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label, input {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+        }
+        input[type="text"] {
+            padding: 0.5rem;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+        th, td {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        footer {
+            margin-top: auto;
+            padding: 1rem;
+            background-color: #4CAF50;
+            color: white;
+            width: 100%;
+            text-align: center;
+        }
+        .delete-button {
+            background-color: #f44336;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+        .delete-button:hover {
+            background-color: #d32f2f;
+        }
+    </style>
 </head>
-<style>
-    body {
-        font-family: sans-serif;
-        text-align: center;
-    }
-    table {
-        width: 93%;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: left;
-        border-collapse: collapse;
-        table-layout: fixed;
-    }
-    tr:nth-child(odd) { 
-        background-color: #489341; 
-    }
-    tr:nth-child(even) { 
-        background-color: #5dae47; 
-    }
-    tr:first-child { 
-        background-color: #37662a;
-        font-weight: bold;
-    }
-    tr {
-        opacity: 0.77;
-    }
-    tr:nth-child(n+2):hover {
-        color: #fff;
-        cursor: pointer;
-        font-weight: bold;
-        background-color: #24421b;
-    }
-    td {
-        padding: 5px;
-        position: relative;
-        border: 1px solid #333;
-        height: 20px;
-    }
-    td:first-child {
-        width: 35px;
-        text-align: center;
-    }
-    h1, h1 a:visited {
-        color: #3f873f;
-        background-color: #fff;
-        font-size: 30px;
-        font-family: Roboto, Geneva, Arial, Helvetica, sans-serif;
-    }
-    h1 a:hover {
-        color: #57a645;
-    }
-    a {
-        text-decoration: none;
-    }
-    label {
-        font-size: 16px;
-        text-decoration: underline;
-        margin-left: 5px;
-    }
-    div {
-        display: contents;
-        font-size: 21px;
-        font-weight: bold;
-    }
-    input[type="submit"] {
-        cursor: pointer;
-    }
-    input[type="text"] {
-        font-style: italic;
-    }
-</style>
 <body>
-    <h1><a href=".">Как можно работать с таблицами в MySQL на Node.js</a></h1>
+    <header>
+        <h1>Работа с MySQL на Node.js</h1>
+    </header>
     <form action="." method="post">
-        <label>Значение</label><div> 1: </div><input type="text" name="col1" value="Первый ..." />
-        <label>Значение</label><div> 2: </div><input type="text" name="col2" value="Второй параметр" />
-        <label>Значение</label><div> 3: </div><input type="text" name="col3" value="Третий пара..." />
-        <input type="submit" value="Добавить" />
+        <label for="col1">Значение 1:</label>
+        <input type="text" id="col1" name="col1" value="Первый ...">
+        <label for="col2">Значение 2:</label>
+        <input type="text" id="col2" name="col2" value="Второй параметр">
+        <label for="col3">Значение 3:</label>
+        <input type="text" id="col3" name="col3" value="Третий параметр ...">
+        <input type="submit" value="Добавить">
     </form>
-    <br />
+    <button class="delete-button" onclick="window.location.href='/delete'">Удалить последние 10 записей</button>
     <table>
         @tr
     </table>
-    <p>Версия базы данных: 
-        <b>
-            @ver
-        </b>
-    </p>
+    <footer>
+        Версия базы данных: <b>@ver</b>
+    </footer>
 </body>
 </html>
